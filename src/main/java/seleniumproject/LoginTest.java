@@ -19,30 +19,26 @@ public class LoginTest {
     }
 
     public static void main(String[] args) {
-        // Launch the browser
+        
         WebDriver driver = new ChromeDriver();
-
-        // Explicit wait setup - useful for waiting until elements are visible or clickable
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Navigate to login page
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
 
-        // Fill in login form with incorrect credentials
         driver.findElement(By.id("inputUsername")).sendKeys("myname");
         driver.findElement(By.name("inputPassword")).sendKeys("volter6870*0");
 
-        // Attempt to log in
+        // attempt to log in
         driver.findElement(By.className("signInBtn")).click();
 
-        // Wait for error message and print it
+        // wait for error message and print it
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("p.error")));
         System.out.println("Login error: " + driver.findElement(By.cssSelector("p.error")).getText());
 
-        // Click on "Forgot your password?" link
+        // click on "Forgot your password?" link
         driver.findElement(By.linkText("Forgot your password?")).click();
 
-        // Fill in password recovery form
+        // fill in password recovery form
         driver.findElement(By.cssSelector("input[placeholder='Name']")).sendKeys("Jatin");
         sleep(800);
         driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("jatin123@gmail.com");
